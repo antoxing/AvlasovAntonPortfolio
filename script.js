@@ -12,10 +12,6 @@ class Slider {
         this.prevButton = navWrapper.querySelector('.prev');
         this.nextButton = navWrapper.querySelector('.next');
 
-        // Инициализируем свайп
-        this.touchStartX = 0;
-        this.touchEndX = 0;
-
         this.init();
     }
 
@@ -30,30 +26,6 @@ class Slider {
         this.dots.forEach((dot, i) => {
             dot.addEventListener('click', () => this.currentSlide(i + 1));
         });
-
-        // События для свайпа
-        this.container.addEventListener('touchstart', (e) => this.handleTouchStart(e));
-        this.container.addEventListener('touchend', (e) => this.handleTouchEnd(e));
-    }
-
-    handleTouchStart(e) {
-        this.touchStartX = e.changedTouches[0].screenX;
-    }
-
-    handleTouchEnd(e) {
-        this.touchEndX = e.changedTouches[0].screenX;
-        this.handleSwipe();
-    }
-
-    handleSwipe() {
-        if (this.touchEndX < this.touchStartX) {
-            // Свайп влево
-            this.moveSlide(1);
-        }
-        if (this.touchEndX > this.touchStartX) {
-            // Свайп вправо
-            this.moveSlide(-1);
-        }
     }
 
     moveSlide(n) {

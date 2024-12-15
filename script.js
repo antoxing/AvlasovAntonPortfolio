@@ -7,6 +7,15 @@ class Slider {
         this.dots = wrapper.parentElement.querySelector('.dots').querySelectorAll('.dot');
         this.index = 1;
 
+        // Найдем кнопки вне wrapper
+        const navWrapper = wrapper.parentElement.querySelector('.navWrapper');
+        this.prevButton = navWrapper.querySelector('.prev');
+        this.nextButton = navWrapper.querySelector('.next');
+
+        // Инициализируем свайп
+        this.touchStartX = 0;
+        this.touchEndX = 0;
+
         this.init();
     }
 
@@ -14,13 +23,37 @@ class Slider {
         this.showSlide(this.index);
 
         // Кнопки навигации
-        this.wrapper.querySelector('.prev').addEventListener('click', () => this.moveSlide(-1));
-        this.wrapper.querySelector('.next').addEventListener('click', () => this.moveSlide(1));
+        this.prevButton.addEventListener('click', () => this.moveSlide(-1));
+        this.nextButton.addEventListener('click', () => this.moveSlide(1));
 
         // Точки
         this.dots.forEach((dot, i) => {
             dot.addEventListener('click', () => this.currentSlide(i + 1));
         });
+
+        // События для свайпа
+        this.container.addEventListener('touchstart', (e) => this.handleTouchStart(e));
+        this.container.addEventListener('touchend', (e) => this.handleTouchEnd(e));
+    }
+
+    handleTouchStart(e) {
+        this.touchStartX = e.changedTouches[0].screenX;
+    }
+
+    handleTouchEnd(e) {
+        this.touchEndX = e.changedTouches[0].screenX;
+        this.handleSwipe();
+    }
+
+    handleSwipe() {
+        if (this.touchEndX < this.touchStartX) {
+            // Свайп влево
+            this.moveSlide(1);
+        }
+        if (this.touchEndX > this.touchStartX) {
+            // Свайп вправо
+            this.moveSlide(-1);
+        }
     }
 
     moveSlide(n) {
@@ -52,53 +85,25 @@ document.querySelectorAll('.sliderWrapper').forEach(wrapper => {
 
 
 
-// let lastScrollPosition = 0;
-// let isScrolling = false;
 
-// document.addEventListener('scroll', () => {
-//     if (isScrolling) return;
 
-//     const currentScrollPosition = window.scrollY;
-//     const scrollingDown = currentScrollPosition > lastScrollPosition; // Проверяем направление
-//     lastScrollPosition = currentScrollPosition;
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollToTopButton = document.getElementById('scrollToTop');
 
-//     const titleBoxes = document.querySelectorAll('.titleBox');
-//     const viewportHeight = window.innerHeight;
+    // Показать/скрыть кнопку при скролле
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollToTopButton.style.display = 'flex';
+        } else {
+            scrollToTopButton.style.display = 'none';
+        }
+    });
 
-//     titleBoxes.forEach((titleBox) => {
-//         const rect = titleBox.getBoundingClientRect();
-//         const elementCenter = rect.top + rect.height / 2;
-//         const viewportCenter = viewportHeight / 2;
-//         const viewportUpper = viewportHeight * 0.3; // Верхние 30% экрана
-
-//         // Проверяем условия в зависимости от направления скролла
-//         if (
-//             !titleBox.classList.contains('scrolled') &&
-//             (
-//                 (scrollingDown && Math.abs(viewportCenter - elementCenter) < 10) || 
-//                 (!scrollingDown && rect.top < viewportUpper) // Для скролла вверх, элемент должен быть в верхних 30%
-//             )
-//         ) {
-//             isScrolling = true;
-
-//             // Убираем флаг у прошлого элемента, если он был
-//             const lastScrolledElement = document.querySelector('.titleBox.scrolled');
-//             if (lastScrolledElement) {
-//                 lastScrolledElement.classList.remove('scrolled');
-//             }
-
-//             // Добавляем флаг текущему элементу
-//             titleBox.classList.add('scrolled');
-
-//             window.scrollTo({
-//                 top: window.scrollY + rect.top - 68,
-//                 behavior: 'smooth'
-//             });
-
-//             setTimeout(() => {
-//                 isScrolling = false;
-//             }, 500); // Время завершения плавного скролла
-//         }
-//     });
-// });
-
+    // Прокрутка наверх при нажатии
+    scrollToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});

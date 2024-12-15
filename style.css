@@ -131,6 +131,10 @@ html {
     font-size: 20px;
     color: #212121;
 }
+.titleText {
+    max-width: 80%;
+    padding-right: 12px;
+}
 .caseNumber {
     display: flex;
     justify-content: center;
@@ -360,6 +364,7 @@ button:active {
     }
     #logo {
         font-size: 12px;
+        gap: 8px;
     }
     .infoWrapper:first-child {
         display: none;

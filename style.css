@@ -74,7 +74,7 @@ html {
     font-size: 16px;
     font-weight: 500;
 }
-.navWrapper {
+.infoWrapper {
     display: flex;
     gap: 8px;
 }
@@ -125,8 +125,8 @@ html {
 .titleBox {
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding-left: 36px;
+    gap: 16px;
+    padding-left: 24px;
     font-weight: bold;
     font-size: 20px;
     color: #212121;
@@ -141,23 +141,32 @@ html {
     background-color: #F9CA7F;
 }
 .infoBox {
-    padding: 0px 84px;
+    padding: 0px 72px;
     color: #212121;
+    max-width: 920px;
+    box-sizing: border-box;
 }
 .infoTitle {
     font-weight: bold;
     font-size: 20px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 .infoStory {
     font-weight: 500;
     font-size: 16px;
     white-space: pre-line;
-    line-height: 1.6;
 }
 .infoStory::after {
     content: attr(data-text);
     display: block; 
+}
+.infoStoryWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+img {
+    user-select: none;
 }
 
 
@@ -170,13 +179,21 @@ html {
     gap: 8px;
     margin-top: 24px;
 }
+.navWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin: 8px 0px 24px 0px;
+}
 .slider-container {
     position: relative;
     border: 2px solid #EBEBEB;
-    max-width: 800px;
+    max-width: 840px;
     overflow: hidden;
     border-radius: 16px;
     user-select: none;
+    margin: 0 8px;
 }
 .slider {
     display: flex;
@@ -187,37 +204,45 @@ html {
     height: auto;
     max-height: 100%;
     display: block;
+    pointer-events: none;
 }
 button {
     font-size: 20px;
-    top: 380px;
-    background-color: #EBEBEB;
-    color: #212121;
+    background-color: #FEF0D9;
     border: none;
-    height: 150px;
-    width: 56px;
+    height: 32px;
+    width: 32px;
     cursor: pointer;
     z-index: 10;
     border-radius: 8px;
     user-select: none;
     transition: background-color 0.3s ease;
     transition: opacity 0.15s ease;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 button:hover {
-    background-color: #CDCDCD;
+    background-color: #FCE5C0;
 }
 button:active {
     opacity: 0.8;
 }
+.prev {
+    background-image: url(images/Icons/arrow_left.svg);
+}
+.next {
+    background-image: url(images/Icons/arrow_right.svg);
+}
 .dots {
-    text-align: center;
-    padding: 8px 0px 24px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     user-select: none;
 }
 .dot {
     height: 12px;
     width: 12px;
-    margin: 0 2px;
     background-color: #CDCDCD;
     border-radius: 50%;
     display: inline-block;
@@ -230,12 +255,31 @@ button:active {
 .active {
     background-color: #4E4E4E;
 }
-.prev {
-    margin-left: 24px;
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 4, 21, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(8px);
+    background-image: url(images/Icons/arrow_up.svg);
+    background-position: center;
+    background-repeat: no-repeat;
 }
-.next {
-    margin-right: 24px;
+.scroll-to-top:hover {
+    background-color: rgba(0, 4, 21, 0.6);
 }
+
 
 
 
@@ -244,7 +288,7 @@ button:active {
     #header {
         justify-content: space-between;
         gap: 0px;
-        padding: 0px 12px;
+        padding: 0 12px;
     }
 }
 @media (max-width: 700px) {
@@ -274,5 +318,50 @@ button:active {
     #photo {
         height: 36px;
         width: 36px;
+    }
+}
+@media (max-width: 600px) {
+    .infoBox {
+        padding: 0 24px;
+    }
+    .infoTitle {
+        font-size: 14px;
+    }
+    .titleBox {
+        padding-left: 12px;
+        gap: 8px;
+    }
+    .caseNumber {
+        height: 24px;
+        width: 24px;
+    }
+    .blockHeader {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    .titleBox {
+        font-size: 14px;
+    }
+    .case {
+        padding: 12px 0 48px 0;
+    }
+    .sliderWrapper {
+        margin-top: 12px;
+    }
+    #content {
+        padding-top: 64px;
+    }
+    #contentBlock {
+        margin: 0 8px;
+    }
+    .scroll-to-top {
+        height: 40px;
+        width: 40px;
+    }
+    #logo {
+        font-size: 12px;
+    }
+    .infoWrapper:first-child {
+        display: none;
     }
 }

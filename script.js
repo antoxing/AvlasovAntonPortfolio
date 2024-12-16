@@ -51,7 +51,6 @@ document.querySelectorAll('.sliderWrapper').forEach(wrapper => {
 
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const scrollToTopButton = document.getElementById('scrollToTop');
 
@@ -70,3 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const caseElements = document.querySelectorAll(".caseNumber");
+  
+    caseElements.forEach(element => {
+      element.addEventListener("click", () => {
+        const offset = 62;
+        const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+        
+        window.scrollTo({
+          top: elementTop - offset,
+          behavior: "smooth"
+        });
+      });
+    });
+  });

@@ -7,7 +7,6 @@ class Slider {
         this.dots = wrapper.parentElement.querySelector('.dots').querySelectorAll('.dot');
         this.index = 1;
 
-        // Найдем кнопки вне wrapper
         const navWrapper = wrapper.parentElement.querySelector('.navWrapper');
         this.prevButton = navWrapper.querySelector('.prev');
         this.nextButton = navWrapper.querySelector('.next');
@@ -18,11 +17,9 @@ class Slider {
     init() {
         this.showSlide(this.index);
 
-        // Кнопки навигации
         this.prevButton.addEventListener('click', () => this.moveSlide(-1));
         this.nextButton.addEventListener('click', () => this.moveSlide(1));
 
-        // Точки
         this.dots.forEach((dot, i) => {
             dot.addEventListener('click', () => this.currentSlide(i + 1));
         });
@@ -48,7 +45,6 @@ class Slider {
     }
 }
 
-// Инициализация всех слайдеров
 document.querySelectorAll('.sliderWrapper').forEach(wrapper => {
     new Slider(wrapper);
 });
@@ -56,13 +52,9 @@ document.querySelectorAll('.sliderWrapper').forEach(wrapper => {
 
 
 
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const scrollToTopButton = document.getElementById('scrollToTop');
 
-    // Показать/скрыть кнопку при скролле
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
             scrollToTopButton.style.display = 'flex';
@@ -71,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Прокрутка наверх при нажатии
     scrollToTopButton.addEventListener('click', () => {
         window.scrollTo({
             top: 0,

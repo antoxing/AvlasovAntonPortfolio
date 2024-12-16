@@ -332,6 +332,9 @@ button:active {
     .case {
         padding: 12px 0 72px 0;
     }
+    .case:last-child {
+        padding: 24px 0px 48px 0px;
+    }
     .sliderWrapper {
         margin-top: 12px;
     }

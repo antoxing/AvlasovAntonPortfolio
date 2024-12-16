@@ -127,6 +127,12 @@ html {
     height: 32px;
     width: 32px;
     background-color: #F9CA7F;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.caseNumber:hover {
+    color: #CD830B;
 }
 .infoBox {
     padding: 0px 72px;

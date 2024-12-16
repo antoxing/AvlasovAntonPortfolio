@@ -21,7 +21,6 @@
 
 
 
-
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #E3E6F4;
@@ -78,24 +77,6 @@ html {
     display: flex;
     gap: 8px;
 }
-/* .navLink {
-    position: relative;
-    cursor: pointer;
-}
-.navLink:after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    width: 0;
-    height: 1px;
-    background-color: #fff;
-    transition: width 0.5s ease, left 0.5s ease;
-}
-.navLink:hover:after {
-    width: 100%;
-    left: 0;
-} */
 #content {
     padding-top: 68px;
     margin-bottom: 12px;
@@ -120,6 +101,9 @@ html {
     font-size: 20px;
 }
 .case {
+    padding: 24px 0px 92px 0px;
+}
+.case:last-child {
     padding: 24px 0px 72px 0px;
 }
 .titleBox {
@@ -172,7 +156,6 @@ html {
 img {
     user-select: none;
 }
-
 
 
 
@@ -287,7 +270,6 @@ button:active {
 
 
 
-
 @media (max-width: 1200px) {
     #header {
         justify-content: space-between;
@@ -314,6 +296,7 @@ button:active {
     }
     .blockHeader {
         font-size: 16px;
+        border-radius: 12px 12px 0 0;
     }
     .dot {
         height: 10px;
@@ -347,7 +330,7 @@ button:active {
         font-size: 14px;
     }
     .case {
-        padding: 12px 0 48px 0;
+        padding: 12px 0 72px 0;
     }
     .sliderWrapper {
         margin-top: 12px;
@@ -368,5 +351,8 @@ button:active {
     }
     .infoWrapper:first-child {
         display: none;
+    }
+    .slider-container {
+        border-radius: 8px;
     }
 }
